@@ -1,41 +1,44 @@
 <template>
   <div id="wrap">
     <div id="navTop">
-      <el-menu theme="dark" :defaultActive="activeIndex" class="el-menu-demo"  router mode="horizontal" @select="handleSelect">
-        <el-menu-item index="/home">处理中心</el-menu-item>
-        <el-submenu index="2">
-          <template slot="title">我的工作台</template>
-          <el-menu-item index="/home">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="/list">订单管理</el-menu-item>
-      </el-menu>
+      <div class="homeBar">
+        <el-menu theme="dark"  class="el-menu-demo"  router mode="horizontal" @select="handleSelect">
+          <el-menu-item index="/">我的工作台</el-menu-item>
+        </el-menu>
+      </div>
+      <div id="userInfo">
+        <span>{{sayHelloMsg}}</span>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{userName}}<i class="el-icon-caret-bottom el-icon--right"></i>
+          </span>
+          <el-dropdown-menu theme="dark"  slot="dropdown" start>
+            <el-dropdown-item index="/"><i class="el-icon-caret-bottom el-icon-setting"></i> 个人中心<el-badge class="mark" :value="3" /></el-dropdown-item>
+            <el-dropdown-item index="/"><el-badge is-dot class="item">我的订单</el-badge></el-dropdown-item>
+            <el-dropdown-item divided index="/list" is-dot>退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
     <div id="content">
       <div id="leftNav">
-        <el-menu theme="dark" defaultActive="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+        <el-menu theme="dark" defaultActive="2" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-message"></i>导航一</template>
             <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
+              <el-menu-item index="/list">列表</el-menu-item>
+              <el-menu-item index="/form">表单</el-menu-item>
+              <el-menu-item index="/transfer">穿越</el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
           </el-submenu>
           <el-menu-item index="2"><i class="el-icon-menu"></i>导航二</el-menu-item>
           <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
         </el-menu>
       </div>
       <div id="main">
-        <router-view></router-view>
+         <div class="main-content">
+           <router-view></router-view>
+         </div>
       </div>
     </div>
   </div>
@@ -43,7 +46,18 @@
 <script>
   export  default{
     data(){
+      let hour = new Date().getHours(),helloMsg='';
+      if(hour < 6){helloMsg="凌晨好！"}
+      else if (hour < 9){helloMsg="早上好！"}
+      else if (hour < 12){helloMsg="上午好！"}
+      else if (hour < 14){helloMsg="中午好！"}
+      else if (hour < 17){helloMsg="下午好！"}
+      else if (hour < 19){helloMsg="傍晚好！"}
+      else if (hour < 22){helloMsg="晚上好！"}
+      else {helloMsg="夜里好！"}
       return {
+          sayHelloMsg:helloMsg,
+          userName:'admin',
           path:'/home',
           activeIndex:'2'
       }
@@ -61,35 +75,6 @@
     }
   }
 </script>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  .el-menu {
-    border-radius: 0;
-    height: 100%;
-  }
-  #navTop{
-    height:60px;
-  }
-  #leftNav {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    bottom: 0;
-    width: 180px;
-  }
-
-  #main {
-    position: absolute;
-    top:60px;
-    bottom:0;
-    right:0;
-    left: 180px;
-    background-color: #eaedf1;
-    padding:20px;
-  }
-
+<style type="text/css">
+    @import "../../static/style/common.css";
 </style>

@@ -1,4 +1,50 @@
-*{
-  margin:0;
-  padding:0;
+/*layout整体样式表*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.el-menu {
+  border-radius: 0;
+  height: 100%;
+}
+.el-dropdown{
+  color:#bfcbd9;
+}
+#navTop{
+  height:60px;
+  background-color:#324157;
+}
+#navTop .homeBar{
+  float:left;
+}
+#userInfo{
+  width:200px;
+  line-height:60px;
+  float:right;
+  color:#bfcbd9;
+  font-size:14px;
+}
+#leftNav {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 180px;
+}
+#main {
+  position: absolute;
+  top:60px;
+  bottom:0;
+  right:0;
+  left: 180px;
+  background-color: #eaedf1;
+  padding:15px;
+}
+#main .main-content{
+  background-color:#fff;
+  height:100%;
+}
+#main .wrap-content{
+  padding:15px 20px;
 }
