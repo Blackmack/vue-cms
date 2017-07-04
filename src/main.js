@@ -10,7 +10,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 
 import App from './App'
 import Routers from './router/index'
-import Home from './components/home'
+import store from '@/store'
 
 
 Vue.config.productionTip = false
@@ -28,6 +28,7 @@ const  router=new VueRouter({
 var app=new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

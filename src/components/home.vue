@@ -1,7 +1,7 @@
 <template>
   <div>
-      <el-button>默认按钮</el-button>
-      <el-button type="primary">主要按钮</el-button>
+      <el-button @click="handleGetInfo">默认按钮</el-button>
+      <el-button type="primary" >主要按钮</el-button>
       <el-button type="text">文字按钮</el-button>
     <el-button type="success">成功按钮</el-button>
     <el-button type="warning">警告按钮</el-button>
@@ -25,11 +25,23 @@
   </div>
 </template>
 <script>
+  import {mapState,mapActions} from 'vuex'
   export default{
       data(){
-          return {}
+          return {
+            value1:2,
+            activeIndex:1
+          }
       },
       methods:{
+        ...mapActions(['getUserInfos']),
+        handleGetInfo(){
+            console.log(this)
+            this.getUserInfos()
+              .then(res=>{
+                console.log(res)
+            })
+        },
         open(){
             this.$alert('这是一段内容', '标题名称', {
               confirmButtonText: '确定',

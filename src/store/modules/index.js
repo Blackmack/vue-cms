@@ -1,14 +1,11 @@
 /**
  * Created by Administrator on 2017/7/3.
  */
-const r=require.context('./',false,/\.js$/)
+const files=require.context('.',false,/\.js$/)
 const  modules={
 }
-r.keys().forEach(r)
-{
-   if(r.key==='./index.js'){
-
-   }
-}
-
+files.keys().forEach((key)=>{
+  if (key === './index.js') return
+  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
+})
 export  default modules

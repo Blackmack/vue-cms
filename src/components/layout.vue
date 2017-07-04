@@ -1,20 +1,20 @@
 <template>
   <div id="wrap">
     <div id="navTop">
-      <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo"  router mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1"><router-link to="/home">处理中心</router-link></el-menu-item>
+      <el-menu theme="dark" :defaultActive="activeIndex" class="el-menu-demo"  router mode="horizontal" @select="handleSelect">
+        <el-menu-item index="/home">处理中心</el-menu-item>
         <el-submenu index="2">
           <template slot="title">我的工作台</template>
           <el-menu-item index="/home">选项1</el-menu-item>
           <el-menu-item index="2-2">选项2</el-menu-item>
           <el-menu-item index="2-3">选项3</el-menu-item>
         </el-submenu>
-        <el-menu-item index="3"><router-link to="/list">订单管理</router-link></el-menu-item>
+        <el-menu-item index="/list">订单管理</el-menu-item>
       </el-menu>
     </div>
     <div id="content">
       <div id="leftNav">
-        <el-menu theme="dark" default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+        <el-menu theme="dark" defaultActive="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-message"></i>导航一</template>
             <el-menu-item-group>
@@ -44,7 +44,8 @@
   export  default{
     data(){
       return {
-          path:'/home'
+          path:'/home',
+          activeIndex:'2'
       }
     },
     methods: {
